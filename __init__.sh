@@ -7,8 +7,11 @@ mkdir ${DIR}
 cd ${DIR}
 
 # start minikube
-minikube start
-sleep 10s
+result=$(minikube status | grep "minikube: Stopped")
+if [ "${result}" != "" ]
+then
+    minikube start
+fi
 
 # init kubeflow
 WORKSPACE=my-kubeflow
@@ -40,5 +43,5 @@ PODNAME=`kubectl get pods --namespace=${NAMESPACE} --selector="app=tf-hub" --out
 kubectl port-forward --namespace=${NAMESPACE} $PODNAME 8888:8000
 
 # remove the workspace folder and stop minikube
-rm -rf /home/$(whoami)/${DIR}
-minikube stop
+# rm -rf /home/$(whoami)/${DIR}
+# minikube stop

@@ -2,10 +2,11 @@
 <!DOCTYPE html>
 <html>
 
+{% block head %}
 <head>
     <title>{% block title %}{% endblock %}</title>
     <link href="{% static 'css/base.css' %}" rel="stylesheet"> </head>
-
+{% endblock %}
 <body>
     <div id="header">
         <span class="logo">DLUT Tensorflow Deep Learning </span> {% if request.user.is_authenticated %}

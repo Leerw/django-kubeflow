@@ -36,6 +36,9 @@ PODNAME=`kubectl get pods --namespace=${NAMESPACE} --selector="app=tf-hub" --out
 
 PODNAME=`kubectl get pods --namespace=${NAMESPACE} --selector="app=tf-hub" --output=template --template="{{with index .items 0}}{{.metadata.name}}{{end}}"`
 
-## remove the workspace folder and stop minikube
-# rm -rf /home/$(whoami)/${DIR}
-# minikube stop
+# port-forward jupyter-notebook to port 6000
+kubectl port-forward --namespace=${NAMESPACE} $PODNAME 8888:8000
+
+# remove the workspace folder and stop minikube
+rm -rf /home/$(whoami)/${DIR}
+minikube stop

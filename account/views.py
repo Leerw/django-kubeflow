@@ -1,8 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, UserRegistationForm
 from django.contrib.auth.decorators import login_required
+
+import os
+import subprocess
+import time
 
 # Create your views here.
 
@@ -27,7 +31,8 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+    executed = 'notdone'
+    return render(request, 'account/dashboard.html', {'section': 'dashboard', 'executed': 'notdone'})
 
 def register(request):
     if request.method == 'POST':
@@ -42,3 +47,10 @@ def register(request):
     else:
         user_form = UserRegistationForm()
     return render(request, 'account/register.html', {'user_form': user_form})
+
+def init(request):
+    if request.method == 'GET':
+        SCRIPT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        subprocess.Popen(["/bin/bash", SCRIPT_PATH + '/__init__.sh'])
+        time.sleep(120)
+        return render(request, 'account/dashboard.html', {'executed': 'done'})

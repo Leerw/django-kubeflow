@@ -1,3 +1,34 @@
-{% extends "base.html" %} {% block title %}Dashboard{% endblock %} {% block content %}
-<h1>Dashboard</h1>
-<p>Welcome to your dashboard.</p> {% endblock %}
+{% extends "base.html" %} 
+{% block head %}
+<head>
+    <title>{% block title %}Dashboard{% endblock %}</title>
+    {% load static %}
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> 
+</head>
+{% endblock %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    <p>Welcome to your dashboard.</p>
+    {% block form %}
+    <form action="{% url 'init' %}" method="get"> {{ form.as_p }} {% csrf_token %}
+            {% ifequal executed 'done' %}
+                <a href="127.0.0.1:8888">打开notebook</a>
+            {% else %}
+            <button type="commit" class="btn btn-primary btn-lg " id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Order">初始化</button>
+            {% endifequal %}
+        </form>
+    {% endblock %}
+{% endblock %}
+<!--
+<script>
+$('.btn').on('click', function() {
+    var $this = $(this);
+  $this.button('loading');
+    setTimeout(function() {
+       $this.button('reset');
+   }, 8000);
+});
+</script>
+-->

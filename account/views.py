@@ -32,7 +32,7 @@ def user_login(request):
 @login_required
 def dashboard(request):
     executed = 'notdone'
-    return render(request, 'account/dashboard.html', {'section': 'dashboard', 'executed': 'notdone'})
+    return render(request, 'account/dashboard.html', {'section': 'dashboard'})
 
 def register(request):
     if request.method == 'POST':
@@ -52,5 +52,5 @@ def init(request):
     if request.method == 'GET':
         SCRIPT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         subprocess.Popen(["/bin/bash", SCRIPT_PATH + '/__init__.sh'])
-        time.sleep(120)
-        return render(request, 'account/dashboard.html', {'executed': 'done'})
+        time.sleep(3)
+        return render(request, 'account/dashboard.html')

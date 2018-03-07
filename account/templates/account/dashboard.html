@@ -14,7 +14,7 @@
     {% block form %}
     <form action="{% url 'init' %}" method="get"> {{ form.as_p }} {% csrf_token %}
             {% ifequal executed 'done' %}
-                <a href="127.0.0.1:8888">打开notebook</a>
+                <a href="127.0.0.1:8888" target="view_window">打开notebook</a>
             {% else %}
             <button type="commit" class="btn btn-primary btn-lg " id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Order">初始化</button>
             {% endifequal %}

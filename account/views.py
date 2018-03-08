@@ -50,7 +50,26 @@ def register(request):
 
 def init(request):
     if request.method == 'GET':
-        SCRIPT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        subprocess.Popen(["/bin/bash", SCRIPT_PATH + '/__init__.sh'])
-        time.sleep(3)
-        return render(request, 'account/dashboard.html')
+        # 初始化kubeflow
+        dashboard_url = 'none'
+        if request.GET.get('init_kubeflow'):
+            SCRIPT_PATH = os.path.dirname(
+                    os.path.dirname(os.path.abspath(__file__)))
+            subprocess.Popen(["/bin/bash", SCRIPT_PATH + '/__init__.sh'])
+            time.sleep(3)
+            return render(request, 'account/dashboard.html', {'dashboard_url': dashboard_url})
+        else:
+            # 打开dashboard或者notebook
+            print("open dashboard")
+            try:
+                out = subprocess.check_output(['minikube', 'dashboard', '--url'])
+            except:
+                return render(request, 'account/dashboard.html')
+            print('out:' + bytes.decode(out))
+            dashboard_url = bytes.decode(out)
+            if dashboard_url[0:4] != 'http':
+                dashboard_url = 'none'
+                return render(request, 'account/dashboard.html', {'dashboard_url': dashboard_url})
+            else:
+                return render(request, 'account/dashboard.html', {'dashboard_url': dashboard_url})
+    return render(request, 'account/dashboard.html')

@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <input data-toggle="modal" class="btn btn-success" type="submit"></input>
+                                <input data-toggle="modal" class="btn btn-success" type="submit" name="init_kubeflow"></input>
                                 <button class="btn btn-outline-danger btn-lg" data-dismiss="modal">Cancel</button>
                             </div>
                         </form>
@@ -53,7 +53,7 @@
         <div class="title">Project</div>
         <div id="txt"></div>
     </div>
-    {% comment %} {% block form %}
+    <!-- {% block form %}
     <form action="{% url 'init' %}" method="get"> {{ form.as_p }} {% csrf_token %}
             {% ifequal executed 'done' %}
                 <a href="127.0.0.1:8888" target="view_window">打开notebook</a>
@@ -61,7 +61,26 @@
             <button type="commit" class="btn btn-primary btn-lg " id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Order">初始化</button>
             {% endifequal %}
         </form>
-    {% endblock %} {% endcomment %}
+    {% endblock %} -->
+    <!-- how to open kubernetes dashboard?
+            1. create a form containing a button with post method
+            2. when click on the button, it activate a function that execute a subprocess 'minikube dashboard'
+    -->
+    {% block dashboard_notebook %}
+        <form action="{% url 'init' %}" method="get">
+            {{ form.as_p }}
+            {% csrf_token %}
+            {% ifequal dashboard_url 'none' %}
+            <input type="submit" value="START!" name="open_dashboard"></input>
+            {% comment %} <button type="commit" class="btn btn-warning">打开dashboard</button>
+            <button type="commit" class="btn btn-warning">打开notebook</button> {% endcomment %}
+            {% else %}
+                <a role="button" class="btn btn-link btn-primary" href="{{ dashboard_url }}" target="view_window">打开dashboard</a>
+                <a role="button" class="btn btn-link btn-primary" href="127.0.0.1:8888" target="view_window">打开notebook</a>
+            {% endifequal %}
+            <br>
+        </form>
+    {% endblock %}
 {% endblock %}
 <!--
 <script>

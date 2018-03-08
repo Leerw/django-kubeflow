@@ -24,12 +24,21 @@
             <a href="{% url "login" %}">Log-in</a> {% endif %} </span>
     </div>
     <div id="content"> 
+        {% with dashboard_url='none' %}
+        
         {% block content %}
         <div class="form">
         {% block form %} 
         {% endblock %} 
         </div>
-        {% endblock %} </div>
+        <div class="open_dashboard_notebook">
+            {% block dashboard_notebook %}
+              
+            {% endblock dashboard_notebook %}
+        </div>
+        {% endblock %} 
+        {% endwith %}
+    </div>
 </body>
 
 </html>

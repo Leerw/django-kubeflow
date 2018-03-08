@@ -17,7 +17,7 @@ fi
 WORKSPACE=my-kubeflow
 ks init ${WORKSPACE}
 cd ${WORKSPACE}
-ks registry add kubeflow github.com/kubeflow/kubeflow/tree/master/kubeflow
+# ks registry add kubeflow github.com/leerw/kubeflow/tree/master/kubeflow
 ks pkg install kubeflow/core
 ks pkg install kubeflow/tf-serving
 ks pkg install kubeflow/tf-job
@@ -36,8 +36,6 @@ sleep 10s
 ks param set kubeflow-core jupyterHubServiceType LoadBalancer
 
 PODNAME=`kubectl get pods --namespace=${NAMESPACE} --selector="app=tf-hub" --output=template --template="{{with index .items 0}}{{.metadata.name}}{{end}}"` 
-
-PODNAME=`kubectl get pods --namespace=${NAMESPACE} --selector="app=tf-hub" --output=template --template="{{with index .items 0}}{{.metadata.name}}{{end}}"`
 
 # port-forward jupyter-notebook to port 6000
 kubectl port-forward --namespace=${NAMESPACE} $PODNAME 8888:8000

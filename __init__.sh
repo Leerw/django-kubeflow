@@ -17,7 +17,7 @@ fi
 WORKSPACE=my-kubeflow
 ks init ${WORKSPACE}
 cd ${WORKSPACE}
-# ks registry add kubeflow github.com/leerw/kubeflow/tree/master/kubeflow
+ks registry add kubeflow github.com/leerw/kubeflow/tree/master/kubeflow
 ks pkg install kubeflow/core
 ks pkg install kubeflow/tf-serving
 ks pkg install kubeflow/tf-job

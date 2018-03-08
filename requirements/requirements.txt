@@ -4,3 +4,4 @@ django-console==0.4.7
 django-ranged-response==0.2.0
 selenium==3.9.0
 tornado==4.5.3
+django-mptt==0.9.0

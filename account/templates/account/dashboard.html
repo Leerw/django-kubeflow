@@ -1,4 +1,4 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block head %}
 <head>
     <title>{% block title %}Dashboard{% endblock %}</title>
@@ -6,66 +6,180 @@
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link href="{% static 'css/style5.css' %}" rel="stylesheet">
 </head>
 {% endblock %}
 
 {% block content %}
-    <div class="project-choose">
-        <div class="button-group" role="group">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                <span class="glyphicon glyphicon-file" aria-hidden="true"></span> New</button>
-    
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header"> Create a new project </div>
-                        <form class="form-horizontal" action="{% url 'init' %}" method="get"> {{ form.as_p }} {% csrf_token %}
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-                                    <div class="col-sm-10">
-                                        <input id="inputName" type="text" class="form-control list-inline" placeholder="Name" required/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputdes" class="col-sm-2 control-label">Description</label>
-                                    <div class="col-sm-10">
-                                        <input id="inputdes" type="text" class="form-control list-inline" placeholder="Description" required/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <input data-toggle="modal" class="btn btn-success" type="submit" name="init_kubeflow" value="Done!"></input>
-                                <button class="btn btn-outline-danger btn-lg" data-dismiss="modal">Cancel</button>
-                            </div>
-                        </form>
-                        
+<div class="wrapper">
+
+    <nav id="sidebar">
+        <div class="sidebar-header">
+				<h3>Project</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li  onclick="showOtherDiv(0)">
+                <a id="0project" href="#"></a>
+            </li>
+            <li onclick="showOtherDiv(1)" >
+                <a id="1project" href="#"></a>
+            </li>
+            <li onclick="showOtherDiv(2)">
+                <a id="2project" href="#"></a>
+
+            <li onclick="showOtherDiv(3)">
+                <a id="3project" href="#"></a>
+            </li>
+            <li onclick="showOtherDiv(4)">
+                <a id="4project" href="#"></a>
+            </li>
+            <li onclick="showOtherDiv(5)">
+                <a id="5project" href="#"></a>
+            </li>
+            <li onclick="showOtherDiv(6)">
+                <a id="6project" href="#"></a>
+            </li>
+            <li onclick="showOtherDiv(7)">
+                <a id="7project" href="#"></a>
+            </li>
+        </ul>
+    </nav>
+
+    <script type="text/javascript">
+    function showOtherDiv(num){
+        //获取要显示的div对象
+        var  otherDiv=document.getElementById('otherDiv');
+        //显示
+        otherDiv1.style.display="block";
+        otherDiv2.style.display = "none";
+        SelectObj(num);
+    }
+    </script>
+
+    <!--获得输入的信息并且显示-->
+    <script type="text/javascript">
+        var counter = 0;
+        var objb;
+        function GetAndShowinfo() {
+            var inputnamevalue = document.getElementById('inputName').value;
+            var inputdesvalue = document.getElementById('inputdes').value;
+            var obja = document.getElementById(counter + 'project');
+            obja.innerHTML = inputnamevalue;
+            counter++;
+        }
+        function SelectObj(num)
+        {
+            objb = document.getElementById(num + 'project');
+        }
+        function Deleteinfo()
+        {
+            objb.innerHTML = " ";
+            counter--;
+        }
+    </script>
+
+
+
+    <div id="content">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+                <div class="project-choose">
+                    <div class="button-group" role="group">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> New</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal3">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
                     </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-danger">
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+        </nav>
+        <div id="otherDiv2" style="text-align:center;padding-top:120px">
+            <img src="{% static 'css/No_Message.jpg' %}">
         </div>
-    <div class="project">
-        <div class="title">Project</div>
-        <div id="txt"></div>
+
+        <div id="otherDiv1" class="file" style="display:none">
+            <div class="container-fluid">
+            </div>
+        </div>
     </div>
-    <!-- {% block form %}
-    <form action="{% url 'init' %}" method="get"> {{ form.as_p }} {% csrf_token %}
-            {% ifequal executed 'done' %}
-                <a href="127.0.0.1:8888" target="view_window">打开notebook</a>
-            {% else %}
-            <button type="commit" class="btn btn-primary btn-lg " id="load" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Order">初始化</button>
-            {% endifequal %}
-        </form>
-    {% endblock %} -->
-    <!-- how to open kubernetes dashboard?
-            1. create a form containing a button with post method
-            2. when click on the button, it activate a function that execute a subprocess 'minikube dashboard'
-    -->
+</div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"> Create a new project </div>
+                <form class="form-horizontal" action="{% url 'init' %}" method="get"> {{ form.as_p }} {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="inputName" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                <input id="inputName" type="text" class="form-control list-inline" placeholder="Name" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputdes" class="col-sm-2 control-label">Description</label>
+                            <div class="col-sm-10">
+                                <input id="inputdes" type="text" class="form-control list-inline" placeholder="Description" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input onclick="GetAndShowinfo()" data-toggle="modal" class="btn btn-success" type="submit" name="init_kubeflow" value="Done!"></input>
+                        <button class="btn btn-outline-danger btn-lg" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% comment %} <div class="modal fade" id="myModal2">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header"> Message </div>
+				<div class="modal-body">
+					Please waiting for initialization!
+				</div>
+				<div class="modal-footer">
+				  <button class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div> {% endcomment %}
+
+    <div class="modal fade" id="myModal3">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"> Message </div>
+                <div class="modal-body">
+                    Be sure to delete？
+                </div>
+                <div class="modal-footer">
+                  <button onclick="Deleteinfo()" class="btn btn-success" data-dismiss="modal">Yes</button>
+                  <button class="btn btn-danger" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {% block dashboard_notebook %}
         <form action="{% url 'init' %}" method="get">
             {{ form.as_p }}
@@ -82,14 +196,3 @@
         </form>
     {% endblock %}
 {% endblock %}
-<!--
-<script>
-$('.btn').on('click', function() {
-    var $this = $(this);
-  $this.button('loading');
-    setTimeout(function() {
-       $this.button('reset');
-   }, 120000);
-});
-</script>
--->

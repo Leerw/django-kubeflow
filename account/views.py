@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm, UserRegistationForm
 from django.contrib.auth.decorators import login_required
 
+from .util import get_url
+
 import os
 import subprocess
 import time
@@ -56,7 +58,7 @@ def init(request):
             SCRIPT_PATH = os.path.dirname(
                     os.path.dirname(os.path.abspath(__file__)))
             subprocess.Popen(["/bin/bash", SCRIPT_PATH + '/__init__.sh'])
-            time.sleep(3)
+            time.sleep(1)
             return render(request, 'account/dashboard.html', {'dashboard_url': dashboard_url})
         else:
             # 打开dashboard或者notebook

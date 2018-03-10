@@ -10,7 +10,7 @@ def get_url(username, password):
 
     driver = webdriver.Firefox() 
     driver.maximize_window() 
-    driver.implicitly_wait(6) 
+    driver.implicitly_wait(3) 
     
     driver.get("http://127.0.0.1:8888") 
 

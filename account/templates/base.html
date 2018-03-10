@@ -33,9 +33,11 @@
         {% endblock %} 
         </div>
         <div class="open_dashboard_notebook">
+            {% with notebook_url='none' %}
             {% block dashboard_notebook %}
-              
+
             {% endblock dashboard_notebook %}
+            {% endwith %}
         </div>
         {% endblock %} 
         {% endwith %}

@@ -19,33 +19,35 @@
         <div class="sidebar-header">
 				<h3>Project</h3>
         </div>
+        <form>
 
-        <ul class="list-unstyled components">
-            <li  onclick="showOtherDiv(0)">
-                <a id="0project" href="#"></a>
-            </li>
-            <li onclick="showOtherDiv(1)" >
-                <a id="1project" href="#"></a>
-            </li>
-            <li onclick="showOtherDiv(2)">
-                <a id="2project" href="#"></a>
-
-            <li onclick="showOtherDiv(3)">
-                <a id="3project" href="#"></a>
-            </li>
-            <li onclick="showOtherDiv(4)">
-                <a id="4project" href="#"></a>
-            </li>
-            <li onclick="showOtherDiv(5)">
-                <a id="5project" href="#"></a>
-            </li>
-            <li onclick="showOtherDiv(6)">
-                <a id="6project" href="#"></a>
-            </li>
-            <li onclick="showOtherDiv(7)">
-                <a id="7project" href="#"></a>
-            </li>
-        </ul>
+            <ul class="list-unstyled components">
+                <li  onclick="showOtherDiv(0)">
+                    <a type="submit" name="cp" id="0project" href="#"></a>
+                </li>
+                <li onclick="showOtherDiv(1)" >
+                    <a id="1project" href="#"></a>
+                </li>
+                <li onclick="showOtherDiv(2)">
+                    <a id="2project" href="#"></a>
+                    
+                    <li onclick="showOtherDiv(3)">
+                        <a id="3project" href="#"></a>
+                    </li>
+                    <li onclick="showOtherDiv(4)">
+                        <a id="4project" href="#"></a>
+                    </li>
+                    <li onclick="showOtherDiv(5)">
+                        <a id="5project" href="#"></a>
+                    </li>
+                    <li onclick="showOtherDiv(6)">
+                        <a id="6project" href="#"></a>
+                    </li>
+                    <li onclick="showOtherDiv(7)">
+                        <a id="7project" href="#"></a>
+                    </li>
+                </ul>
+        </form>
     </nav>
 
     <script type="text/javascript">
@@ -145,7 +147,9 @@
                 <button type="commit" class="btn btn-warning">打开notebook</button> {% endcomment %}
                 {% else %}
                     <a role="button" class="btn btn-link btn-primary" href="{{ dashboard_url }}" target="view_window">打开dashboard</a>
-                    <a role="button" class="btn btn-link btn-primary" href="127.0.0.1:8888" target="view_window">打开notebook</a>
+                    {% ifnotequal notebook_url 'none' %}
+                        <a role="button" class="btn btn-link btn-primary" href="127.0.0.1:8888" target="view_window">打开notebook</a>
+                    {% endifnotequal %}
                 {% endifequal %}
                 <br>
             </form>

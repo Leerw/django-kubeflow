@@ -72,5 +72,8 @@ def init(request):
                 dashboard_url = 'none'
                 return render(request, 'account/dashboard.html', {'dashboard_url': dashboard_url})
             else:
-                return render(request, 'account/dashboard.html', {'dashboard_url': dashboard_url})
+                username = request.GET['username']
+                password = username
+                notebook_url = util.get_url(username, password)
+                return render(request, 'account/dashboard.html', {'dashboard_url': dashboard_url, 'notebook_url': notebook_url})
     return render(request, 'account/dashboard.html')

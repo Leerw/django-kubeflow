@@ -39,6 +39,7 @@ ks generate core kubeflow-core --name=kubeflow-core --namespace=${NAMESPACE}
 ks env add nocloud
 
 KF_ENV=nocloud
+sleep 10s
 ks apply ${KF_ENV} -c kubeflow-core
 
 sleep 30s

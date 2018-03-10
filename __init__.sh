@@ -2,13 +2,16 @@
 cd ~
 
 # create workspace folder
-DIR=kubeflow
+DIR=~/kubeflow/
 
 # delete the foler created last time
-rm -rf ${DIR}
+if [ ! -d "${DIR}" ]; then
+    mkdir "${DIR}"
+else
+    rm -rf "${DIR}"
+    mkdir "${DIR}"
+fi
 
-mkdir ${DIR}
-cd ${DIR}
 
 # start minikube
 result=$(minikube status | grep "minikube: Stopped")
@@ -16,7 +19,6 @@ if [ "${result}" != "" ]
 then
     minikube start
 fi
-
 # init kubeflow
 WORKSPACE=my-kubeflow
 ks init ${WORKSPACE}
@@ -28,13 +30,8 @@ ks pkg install kubeflow/tf-job
 
 NAMESPACE=kubeflow
 
-if the NAMESPACE is alreay exists, then delete it!
-result=$(kubectl get namespace | grep ${NAMESPACE})
-if [ "${result}" != "" ]
-then
-    kubectl delete namespace kubeflow
-    sleep 30s
-fi
+# if the NAMESPACE is alreay exists, then delete it!
+
 
 kubectl create namespace ${NAMESPACE}
 ks generate core kubeflow-core --name=kubeflow-core --namespace=${NAMESPACE}
@@ -44,7 +41,7 @@ ks env add nocloud
 KF_ENV=nocloud
 ks apply ${KF_ENV} -c kubeflow-core
 
-sleep 20s
+sleep 30s
 
 ks param set kubeflow-core jupyterHubServiceType LoadBalancer
 

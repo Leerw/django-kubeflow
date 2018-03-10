@@ -4,8 +4,7 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm, UserRegistationForm
 from django.contrib.auth.decorators import login_required
 
-from .util import get_url
-
+from . import util
 import os
 import subprocess
 import time

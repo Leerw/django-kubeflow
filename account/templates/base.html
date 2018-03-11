@@ -26,20 +26,21 @@
     <br>
     <div id="content"> 
         {% with dashboard_url='none' %}
-        
-        {% block content %}
-        <div class="form">
-        {% block form %} 
-        {% endblock %} 
-        </div>
-        <div class="open_dashboard_notebook">
-            {% with notebook_url='none' %}
-            {% block dashboard_notebook %}
+            {% block content %}
 
-            {% endblock dashboard_notebook %}
-            {% endwith %}
-        </div>
-        {% endblock %} 
+                <div class="form">
+                    {% block form %} 
+                    {% endblock %} 
+                </div>
+
+                <div class="open_dashboard_notebook">
+                    {% block dashboard_notebook %}
+
+                    {% endblock dashboard_notebook %}
+                </div>
+
+            {% endblock %} 
+
         {% endwith %}
     </div>
 </body>

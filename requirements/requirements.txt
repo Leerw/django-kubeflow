@@ -1,3 +1,9 @@
+###############################################################################
+Python version: 3.6.4
+###############################################################################
+
+##############################################################################
+Python packages:
 Django==2.0.2
 django-bootstrap4==0.0.6
 django-console==0.4.7
@@ -5,3 +11,37 @@ django-ranged-response==0.2.0
 selenium==3.9.0
 tornado==4.5.3
 django-mptt==0.9.0
+PyVirtualDisplay==0.2.1
+six==1.11.0
+###############################################################################
+
+###############################################################################
+minikube version: v0.23.0
+
+kubectl version:
+Client Version: version.Info{Major:"1", Minor:"9", GitVersion:"v1.9.2",GitCommit:"5fa2db2bd46ac79e5e00a4e6ed24191080aa463b", GitTreeState:"clean", BuildDate:"2018-01-18T10:09:24Z", GoVersion:"go1.9.2", Compiler:"gc", Platform:"linux/amd64"}
+Server Version: version.Info{Major:"1", Minor:"8", GitVersion:"v1.8.0",GitCommit:"0b9efaeb34a2fc51ff8e4d34ad9bc6375459c4a4", GitTreeState:"clean", BuildDate:"2017-12-27T05:32:18Z", GoVersion:"go1.9.1", Compiler:"gc", Platform:"linux/amd64"}
+
+ks versionksonnet version: 0.8.0
+jsonnet version: v0.9.5
+client-go version: v1.6.8-beta.0+$Format:%h$
+###############################################################################
+
+###############################################################################
+docker images in minikube:
+leerw/tfoperatorv20180226-403                                                     latest
+gcr.io/kubeflow-images-staging/tf_operator                                        v20180226-403
+leerw/dut-jupyterhub-k8s                                                          latest
+gcr.io/kubeflow/jupyterhub-k8s                                                    1.0.1
+quay.io/datawire/ambassador                                                       0.26.0
+quay.io/datawire/statsd                                                           0.22.0
+gcr.io/tf-on-k8s-dogfood/tf_operator                                              v20171223-37af20d
+gcr.io/kubeflow/tensorflow-notebook-cpu                                           v1
+registry.cn-hangzhou.aliyuncs.com/google_containers/k8s-dns-sidecar-amd64         1.14.5
+registry.cn-hangzhou.aliyuncs.com/google_containers/k8s-dns-kube-dns-amd64        1.14.5
+registry.cn-hangzhou.aliyuncs.com/google_containers/k8s-dns-dnsmasq-nanny-amd64   1.14.5
+registry.cn-hangzhou.aliyuncs.com/google_containers/kubernetes-dashboard-amd64    v1.7.0
+registry.cn-hangzhou.aliyuncs.com/google_containers/kubernetes-dashboard-amd64    v1.6.3
+registry.cn-hangzhou.aliyuncs.com/google_containers/kube-addon-manager            v6.4-beta.2
+registry.cn-hangzhou.aliyuncs.com/google_containers/pause-amd64                   3.0
+###############################################################################

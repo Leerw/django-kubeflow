@@ -140,7 +140,7 @@
         </div>
         <div class="Initialize" style="float:right;">
             <form class="form-horizontal" action="{% url 'init' %}" method="get"> {{ form.as_p }} {% csrf_token %}
-                <input class="btn btn-success" type="submit" name="init_kubeflow" value="Initialize!" style="position:absolute;bottom:0px;right:150px;"> </input>
+                <input class="btn btn-success" type="submit" name="init_kubeflow" value="Initialize!" style="position:absolute;bottom:0px;right:300px;"> </input>
             </form>
         </div>
         
@@ -148,14 +148,14 @@
         <div class="Start" style="float:right;padding-right:10px;">
             <form action="{% url 'init' %}" method="get">
                 {{ form.as_p }} {% csrf_token %} 
-                {% ifequal dashboard_url 'none' %}
-                    <input class="btn btn-success" type="submit" value="START!" name="open_dashboard" style="position:absolute;bottom:0px;right:50px;"> </input>
-                {% else %}
-                    <a role="button" class="btn btn-link btn-primary" href="{{ dashboard_url }}" target="view_window">打开dashboard</a>
-                    {% with nb_url='http://127.0.0.1:8888/user/admin/tree?' %}
-                    <a role="button" class="btn btn-link btn-primary" href="{{ nb_url }}" target="view_window">打开notebook</a>
+                {% with dashboard_url='http://192.168.99.100:30000' %}
+
+                    <a  href="{{ dashboard_url }}" target="view_window" class="btn btn-success" style="position:absolute;bottom:0px;right:170px;height:42px;width:114px;">Dashboard</a>
                     {% endwith %}                
-                {% endifequal %}
+
+                    {% with nb_url='http://127.0.0.1:8888/user/admin/tree?' %}
+                    <a href="{{ nb_url }}" target="view_window" class="btn btn-success" style="position:absolute;bottom:0px;right:40px;height:42px;width:114px;">Notebook</a>
+                    {% endwith %}                
                 <br>
             </form>
         </div>

@@ -66,14 +66,11 @@ def init(request):
                 out = subprocess.check_output(['minikube', 'dashboard', '--url'])
             except:
                 return render(request, 'account/dashboard.html')
-            print('out:' + bytes.decode(out))
             dashboard_url = bytes.decode(out)
             if dashboard_url[0:4] != 'http':
                 dashboard_url = 'none'
                 return render(request, 'account/dashboard.html', {'dashboard_url': dashboard_url})
             else:
-                username = request.GET['username']
-                password = username
-                notebook_url = util.get_url(username, password)
-                return render(request, 'account/dashboard.html', {'dashboard_url': dashboard_url, 'notebook_url': notebook_url})
+                print("dashboard_url: " + dashboard_url)
+                return render(request, 'account/notebook.html', {'dashboard_url': dashboard_url})
     return render(request, 'account/dashboard.html')

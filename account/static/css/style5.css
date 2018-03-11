@@ -208,7 +208,7 @@ a.article, a.article:hover {
 	width:100%;
     padding: 20px;
 	padding-top:0px;
-    min-height: 100vh;
+    min-height: 90vh;
     transition: all 0.3s;
 }
 

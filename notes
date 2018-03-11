@@ -1,8 +1,0 @@
-关于文件存储的新思路
-
-1. 用HDFS分布式存储
-2. 在主机中创建HDFS存储路径/work
-3. 在minikube中创建一个HDFS的container
-4. 使tensorflow-cpu和HDFS两个container工作在一个pod中
-5. 让这两个container共享一个volume,也就是tensorflow-cpu中的work文件夹
-6. 以上需要修改kubeflow
